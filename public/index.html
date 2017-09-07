@@ -3,6 +3,7 @@
 <head>
   <title>Draw 'n' Guess</title>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="semantic.min.css" />
   <link rel="stylesheet" href="style.css" />
   <script src="socket.io/socket.io.js"></script>
 </head>
@@ -21,7 +22,32 @@
     <div class="controller">
       <span id="clear">Clear</span>
     </div>
+    <div class="login">
+      <form class="ui raised segment">
+          <h2 class="ui header">Please input your name</h2>
+          <div class="ui action input">
+            <input type="text" name="username" placeholder="Your name">
+            <button type="submit" class="ui primary button">OK</button>
+          </div>
+      </form>
+    </div>
+    <div class="chat">
+      <form>
+        <div class="ui action input">
+          <input type="text" name="message" placeholder="Make a guess">
+          <button type="submit" class="ui primary button">Send</button>
+        </div>
+      </form>
+    </div>
+    <div class="messages">
+        <div class="ui raised segment">
+          lalala: I am here
+        </div>
+    </div>
   </main>
+  <script src="jquery-3.2.1.min.js"></script>
+  <script src="semantic.min.js"></script>
   <script src="client.js"></script>
+  <script src="chat.js"></script>
 </body>
 </html>

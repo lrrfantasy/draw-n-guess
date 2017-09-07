@@ -21,6 +21,7 @@ const io = socketIo.listen(server)
 
 let lineHistory = []
 io.on('connection', socket => {
+  let username = ''
   lineHistory.forEach(data => {
     socket.emit('drawLine', data)
   })
@@ -31,5 +32,12 @@ io.on('connection', socket => {
   socket.on('clear', () => {
     lineHistory = []
     io.emit('clear')
+  })
+  socket.on('login', name => {
+    username = name
+  })
+
+  socket.on('chat', message => {
+    io.emit('chat', username, message)
   })
 })
