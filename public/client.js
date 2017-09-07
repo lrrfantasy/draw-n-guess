@@ -9,8 +9,8 @@
   const clear = document.getElementById('clear')
   const canvas = document.getElementById('drawing')
   const context = canvas.getContext('2d')
-  const width = window.innerWidth
-  const height = window.innerHeight
+  const width = 1200
+  const height = 600
   const socket = io.connect()
 
   canvas.width = width
@@ -22,10 +22,10 @@
   canvas.onmouseup = e => {
     mouse.click = false
   }
-  canvas.onmousemove = ({ clientX, clientY }) => {
+  canvas.onmousemove = ({ offsetX, offsetY }) => {
     mouse.move = true
-    mouse.pos.x = clientX / width
-    mouse.pos.y = clientY / height
+    mouse.pos.x = offsetX / width
+    mouse.pos.y = offsetY / height
   }
 
   socket.on('drawLine', data => {
