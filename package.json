@@ -2,7 +2,8 @@
   "name": "drawnguess",
   "version": "1.0.0",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "license": "MIT",
   "dependencies": {
@@ -13,5 +14,8 @@
   },
   "engines": {
     "node": ">=6.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.0"
   }
 }

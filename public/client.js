@@ -28,7 +28,7 @@
     mouse.pos.y = clientY / height
   }
 
-  socket.on('drawLine', function (data) {
+  socket.on('drawLine', data => {
     const line = data.line
     context.beginPath()
     context.lineWidth = 2
@@ -38,13 +38,16 @@
   })
 
   clear.onmousedown = () => {
-    context.clearRect(0, 0, canvas.width, canvas.height);
     socket.emit('clear')
   }
 
+  socket.on('clear', () => {
+    context.clearRect(0, 0, canvas.width, canvas.height)
+  })
+
   function mainLoop() {
     if (mouse.click && mouse.move && mouse.prevPos) {
-      socket.emit('drawLine', { line: [ mouse.pos, mouse.prevPos ] })
+      socket.emit('drawLine', { line: [mouse.pos, mouse.prevPos] })
       mouse.move = false
     }
     mouse.prevPos = {x: mouse.pos.x, y: mouse.pos.y}

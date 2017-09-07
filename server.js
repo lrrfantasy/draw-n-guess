@@ -30,5 +30,6 @@ io.on('connection', socket => {
   })
   socket.on('clear', () => {
     lineHistory = []
+    io.emit('clear')
   })
 })
