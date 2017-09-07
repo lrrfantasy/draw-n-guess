@@ -17,9 +17,33 @@ main {
 
 canvas {
   display: block;
-  margin: 20px 0;
+  margin: 20px 0 0;
   border: 1px solid #999;
 }
+
+#currentColor {
+  height: 30px;
+  background-color: #000;
+}
+
+.palette {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.palette span {
+  display: block;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+}
+
+[data-color='#000'] { background: #000; }
+[data-color='#cb1b45'] { background: #cb1b45; }
+[data-color='#005caf'] { background: #005caf; }
+[data-color='#efbb24'] { background: #efbb24; }
+[data-color='#24936e'] { background: #24936e; }
+[data-color='#6a4c9c'] { background: #6a4c9c; }
 
 .controller {
   text-align: right;

@@ -21,12 +21,12 @@ const io = socketIo.listen(server)
 
 let lineHistory = []
 io.on('connection', socket => {
-  lineHistory.forEach(line => {
-    socket.emit('drawLine', { line })
+  lineHistory.forEach(data => {
+    socket.emit('drawLine', data)
   })
   socket.on('drawLine', data => {
-    lineHistory.push(data.line)
-    io.emit('drawLine', { line: data.line })
+    lineHistory.push(data)
+    io.emit('drawLine', data)
   })
   socket.on('clear', () => {
     lineHistory = []
