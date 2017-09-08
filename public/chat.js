@@ -20,13 +20,13 @@
     })
 
   const messages = document.querySelector('.messages')
-  
+
   socket.on('chat', (user, message) => {
     const newMessageBox = document.createElement('div')
-    messages.appendChild(newMessageBox)  
+    messages.appendChild(newMessageBox)
 
     const windowHeight = window.innerHeight
-  
+
     const messageTop = Math.random() * (windowHeight - 200)
 
     newMessageBox.outerHTML = `
