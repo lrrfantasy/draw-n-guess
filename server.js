@@ -13,9 +13,9 @@ server.listen(3000, () => {
 })
 const io = socketIo.listen(server)
 
-let lineHistory = []
+let lineHistory = [],
+  username = ''
 io.on('connection', socket => {
-  let username = ''
   lineHistory.forEach(data => {
     socket.emit('drawLine', data)
   })
@@ -29,6 +29,7 @@ io.on('connection', socket => {
   })
   socket.on('login', name => {
     username = name
+    io.emit('chat', 'Bot', `Welcome ${name} to join`)
   })
 
   socket.on('chat', message => {
