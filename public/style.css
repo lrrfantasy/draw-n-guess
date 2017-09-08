@@ -93,14 +93,13 @@ canvas {
   left: 0;
   max-width: 33%;
   font-size: 28px;
-  background: rgba(255, 255, 255, 0.5);
   animation-name: fly-to-left;
   animation-duration: 25s;
-  animation-timing-function: linear;
+  animation-timing-function: linear;;
 }
 
 .message .nyan {
-  width: 60px;
+  width: 200px;
   transform: scaleX(-1);
 }
 

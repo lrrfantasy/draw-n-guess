@@ -30,7 +30,7 @@
     const messageTop = Math.random() * (windowHeight - 200)
     const flyTime = Math.random() * 20 + 5
 
-    newMessageBox.outerHTML = `
+    newMessageBox.innerHTML = `
     <div class="message" style="top: ${messageTop}px; animation-duration: ${flyTime}s;">
       <img class="nyan" src="nyan.gif"></img>
       <span>${user}: ${message}</span>
@@ -38,6 +38,6 @@
 
     setTimeout(() => {
       newMessageBox.remove()
-    }, 30000)
+    }, 25000)
   })
 })()
