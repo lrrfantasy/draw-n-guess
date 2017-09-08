@@ -1,16 +1,9 @@
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
-}
-body, html {
-  width: 100%;
-  height: 100%;
-  font-family: 'Open Sans', Arial, sans-serif;
 }
 
 main {
-  margin: 40px auto;
+  margin: 20px auto;
   width: 100%;
   max-width: 1200px;
 }
@@ -46,10 +39,12 @@ canvas {
 [data-color='#6a4c9c'] { background: #6a4c9c; }
 
 .controller {
-  text-align: right;
+  margin: 0 0 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.controller span {
+.controller .clear {
   display: inline-block;
   padding: 10px 20px;
   background: #cb1b45;
@@ -80,8 +75,8 @@ canvas {
   text-align: center;
 }
 
-.chat {
-  text-align: center;
+.chat-box {
+  width: 100%;
 }
 
 .messages {
@@ -91,14 +86,22 @@ canvas {
   width: 300%;
 }
 
-.messages>div.ui.segment {
+.message {
+  display: flex;
+  align-items: center;
   position: absolute;
   left: 0;
   max-width: 33%;
+  font-size: 28px;
   background: rgba(255, 255, 255, 0.5);
   animation-name: fly-to-left;
   animation-duration: 25s;
   animation-timing-function: linear;
+}
+
+.message .nyan {
+  width: 60px;
+  transform: scaleX(-1);
 }
 
 @keyframes fly-to-left {

@@ -11,16 +11,16 @@
   <main>
     <canvas id="drawing"></canvas>
     <div id="currentColor"></div>
-    <div class="palette">
-      <span data-color="#000"></span>
-      <span data-color="#cb1b45"></span>
-      <span data-color="#005caf"></span>
-      <span data-color="#efbb24"></span>
-      <span data-color="#24936e"></span>
-      <span data-color="#6a4c9c"></span>
-    </div>
     <div class="controller">
-      <span id="clear">Clear</span>
+      <div class="palette">
+        <span data-color="#000"></span>
+        <span data-color="#cb1b45"></span>
+        <span data-color="#005caf"></span>
+        <span data-color="#efbb24"></span>
+        <span data-color="#24936e"></span>
+        <span data-color="#6a4c9c"></span>
+      </div>
+      <span class="clear" id="clear">Clear</span>
     </div>
     <div class="login">
       <form class="ui raised segment">
@@ -33,15 +33,16 @@
     </div>
     <div class="chat">
       <form>
-        <div class="ui action input">
-          <input type="text" name="message" placeholder="Make a guess">
-          <button type="submit" class="ui primary button">Send</button>
+        <div class="chat-box ui action input">
+          <input type="text" name="message" placeholder="Message">
+          <button type="submit" class="ui primary button">Shoot the Message</button>
         </div>
       </form>
     </div>
     <div class="messages">
-        <div class="ui raised segment">
-          lalala: I am here
+        <div class="message">
+          <img class="nyan" src="nyan.gif"></img>
+          <span>lalala: I am here<span>
         </div>
     </div>
   </main>

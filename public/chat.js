@@ -28,10 +28,12 @@
     const windowHeight = window.innerHeight
 
     const messageTop = Math.random() * (windowHeight - 200)
+    const flyTime = Math.random() * 20 + 5
 
     newMessageBox.outerHTML = `
-    <div class="ui segment" style="top: ${messageTop}px">
-      <p>${user}: ${message}</p>
+    <div class="message" style="top: ${messageTop}px; animation-duration: ${flyTime}s;">
+      <img class="nyan" src="nyan.gif"></img>
+      <span>${user}: ${message}</span>
     </div>`
 
     setTimeout(() => {
