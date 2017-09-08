@@ -44,12 +44,23 @@ canvas {
   justify-content: space-between;
 }
 
-.controller .clear {
-  display: inline-block;
+.misc {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#save, .clear {
   padding: 10px 20px;
-  background: #cb1b45;
   color: white;
   cursor: pointer;
+}
+
+#save {
+  background: #1b813e;
+}
+
+.clear {
+  background: #cb1b45;
 }
 
 .login {

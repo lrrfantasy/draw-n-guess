@@ -9,6 +9,7 @@
 
   const currentColor = document.getElementById('currentColor')
   const palettes = document.querySelectorAll('span[data-color]')
+  const save = document.getElementById('save')
   const clear = document.getElementById('clear')
 
   const canvas = document.getElementById('drawing')
@@ -50,7 +51,12 @@
     }
   })
 
-  clear.onmousedown = () => {
+  save.onclick = () => {
+    save.href = canvas.toDataURL()
+    save.download = 'image.png'
+  }
+
+  clear.onclick = () => {
     socket.emit('clear')
   }
 
