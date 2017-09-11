@@ -8,7 +8,7 @@ var express = require('express'),
 app.use(express.static(__dirname + '/public'))
 
 const server = http.createServer(app)
-server.listen(3001, () => {
+server.listen(3000, () => {
   console.log('Server running at :3000')
 })
 const io = socketIo.listen(server)
