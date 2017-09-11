@@ -40,7 +40,7 @@
     context.moveTo(line[0].x * width, line[0].y * height)
     context.lineTo(line[1].x * width, line[1].y * height)
     context.strokeStyle = color
-    context.stroke();
+    context.stroke()
   })
 
   palettes.forEach(palette => {
@@ -86,7 +86,7 @@
   setInterval(mainLoop, 25)
   function makeCursor(color) {
     var cursor = document.createElement('canvas'),
-        ctx = cursor.getContext('2d');
+        ctx = cursor.getContext('2d')
 
     cursor.width = 4
     cursor.height = 4
@@ -94,7 +94,7 @@
     ctx.rect(0, 0, 4, 4)
     ctx.fillStyle = color
     ctx.fill()
-    canvas.style.cursor = 'url(' + cursor.toDataURL() + '), auto';
+    canvas.style.cursor = 'url(' + cursor.toDataURL() + '), auto'
   }
   makeCursor('#000')
 }())
