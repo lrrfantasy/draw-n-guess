@@ -8,7 +8,7 @@ var express = require('express'),
 app.use(express.static(__dirname + '/public'))
 
 const server = http.createServer(app)
-server.listen(3000, () => {
+server.listen(3001, () => {
   console.log('Server running at :3000')
 })
 const io = socketIo.listen(server)
@@ -28,7 +28,7 @@ io.on('connection', socket => {
     io.emit('clear')
   })
   socket.on('login', name => {
-    io.emit('chat', 'Bot', `Welcome ${name} to join`)
+    io.emit('chat', 'Bot', `Welcome ${name} to join!`)
   })
 
   socket.on('chat', (username, message) => {
