@@ -27,7 +27,7 @@ io.on('connection', socket => {
     io.emit('clear')
   })
   socket.on('login', name => {
-    io.emit('chat', 'Bot', `Welcome ${name} to join!`)
+    io.emit('chat', 'Bot', `Welcome ${name} to join`)
   })
 
   socket.on('chat', (username, message) => {
