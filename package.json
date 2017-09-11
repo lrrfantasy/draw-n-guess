@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "nodemon server.js",
-    "deploy": "pm2 deploy production"
+    "deploy": "pm2 deploy production",
+    "local-deploy": "pm2 deploy local-deploy"
   },
   "license": "MIT",
   "dependencies": {

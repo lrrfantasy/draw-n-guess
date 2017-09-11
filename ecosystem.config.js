@@ -27,6 +27,14 @@ module.exports = {
       repo: 'git@github.com:lrrfantasy/draw-n-guess.git',
       path: '/var/www/production',
       'post-deploy': 'yarn install && pm2 reload ecosystem.config.js --env production'
+    },
+    'local-deploy': {
+      user: 'ec2-user',
+      host: 'localhost',
+      ref: 'origin/master',
+      repo: 'git@github.com:lrrfantasy/draw-n-guess.git',
+      path: '/var/www/production',
+      'post-deploy': 'yarn install && pm2 reload ecosystem.config.js --env production'
     }
   }
 };
