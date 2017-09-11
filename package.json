@@ -2,7 +2,8 @@
   "name": "drawnguess",
   "version": "1.0.0",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "deploy": "pm2 deploy production"
   },
   "license": "MIT",
   "dependencies": {
@@ -14,6 +15,7 @@
     "node": ">=6.0.0"
   },
   "devDependencies": {
-    "nodemon": "^1.12.0"
+    "nodemon": "^1.12.0",
+    "pm2": "^2.6.1"
   }
 }
