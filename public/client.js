@@ -64,6 +64,14 @@
     context.clearRect(0, 0, canvas.width, canvas.height)
   })
 
+  socket.on('drawImage', url => {
+    const img = new Image()
+    img.src = url
+    img.onload = () => {
+      context.drawImage(img, 0, 0, width, height)
+    }
+  })
+
   function mainLoop() {
     if (mouse.click && mouse.move && mouse.prevPos) {
       socket.emit('drawLine', {

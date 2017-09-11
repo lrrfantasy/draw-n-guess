@@ -33,6 +33,11 @@ io.on('connection', socket => {
   })
 
   socket.on('chat', message => {
-    io.emit('chat', username, message)
+    if (message.startsWith('http') &&
+      (message.endsWith('jpg') || message.endsWith('png'))) {
+        io.emit('drawImage', message)
+    } else {
+      io.emit('chat', username, message)
+    }
   })
 })
