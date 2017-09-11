@@ -1,8 +1,7 @@
 var express = require('express'),
   app = express(),
   http = require('http'),
-  socketIo = require('socket.io'),
-  AV = require('leanengine')
+  socketIo = require('socket.io');
 
 
 app.use(express.static(__dirname + '/public'))
