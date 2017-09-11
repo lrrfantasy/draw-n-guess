@@ -13,8 +13,7 @@ server.listen(3000, () => {
 })
 const io = socketIo.listen(server)
 
-let lineHistory = [],
-  username = ''
+let lineHistory = []
 
 io.on('connection', socket => {
   lineHistory.forEach(data => {
@@ -29,11 +28,10 @@ io.on('connection', socket => {
     io.emit('clear')
   })
   socket.on('login', name => {
-    username = name
     io.emit('chat', 'Bot', `Welcome ${name} to join`)
   })
 
-  socket.on('chat', message => {
+  socket.on('chat', (username, message) => {
     if (message.startsWith('http') &&
       (message.endsWith('jpg') || message.endsWith('png'))) {
         io.emit('drawImage', message)

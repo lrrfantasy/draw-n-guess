@@ -1,10 +1,12 @@
 (function () {
 
   const socket = io.connect()
+  let username
 
   const usernameMatch = location.search.match(/[\?&]username=([^\?&]*)/)
   if (usernameMatch && usernameMatch[1]) {
-    socket.emit('login', usernameMatch[1])
+    username = usernameMatch[1]
+    socket.emit('login', username)
   } else {
     document.querySelector('.login').className += ' show'
   }
@@ -14,7 +16,7 @@
       event.preventDefault()
       const message = event.target.message.value
       if (message) {
-        socket.emit('chat', message)
+        socket.emit('chat', username, message)
         event.target.message.value = ""
       }
     })
