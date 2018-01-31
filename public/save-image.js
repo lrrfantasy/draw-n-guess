@@ -9,6 +9,30 @@ const $hideSide = $('.hide-side');
 
 const $save = $('#save');
 
+const likeImage = $image => {
+  const $likeNumberElement = $image.find('.like-number');
+  let likeNumber = parseInt($likeNumberElement.text());
+  likeNumber++;
+  $likeNumberElement.text(likeNumber);
+};
+
+const dislikeImage = $image => {
+  const $dislikeNumberElement = $image.find('.dislike-number');
+  let likeNumber = parseInt($dislikeNumberElement.text());
+  likeNumber++;
+  $dislikeNumberElement.text(likeNumber);
+};
+
+const addEvent = $image => {
+  $image.find('.like').click(() => {
+    likeImage($image);
+  });
+
+  $image.find('.dislike').click(() => {
+    dislikeImage($image);
+  });
+};
+
 $save.click(() => {
   const imageUrl = canvas.toDataURL();
 
@@ -19,6 +43,8 @@ $save.click(() => {
   $sideImagesContent.append($saveImage);
   // save.href = canvas.toDataURL();
   // save.download = 'image.png';
+
+  addEvent($saveImage);
 });
 
 $showSide.click(() => {

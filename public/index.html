@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Draw 'n' Guess</title>
   <meta charset="utf-8">
@@ -7,6 +8,7 @@
   <link rel="stylesheet" href="style.css" />
   <script src="socket.io/socket.io.js"></script>
 </head>
+
 <body>
   <main>
     <canvas id="drawing"></canvas>
@@ -46,22 +48,40 @@
     </div>
     <div class="side-images">
       <a class="show-side toggle-side" href="javascript:void(0)">
-          <i class="caret left icon"></i>
+        <i class="caret left icon"></i>
       </a>
       <a class="hide-side toggle-side" href="javascript:void(0)">
-          <i class="caret right icon"></i>
+        <i class="caret right icon"></i>
       </a>
-        
+
       <div class="side-images-content">
       </div>
     </div>
 
     <div class="hidden">
-      <div class="save-image-template">
+      <div class="save-image-template ui card">
         <img />
+        <div class="content">
+          <div class="ui labeled button like" tabindex="0">
+            <div class="ui red button">
+              <i class="heart icon"></i>Like
+            </div>
+            <a class="ui basic red left pointing label like-number">
+              0
+            </a>
+          </div>
+          <div class="ui labeled button dislike" tabindex="0">
+              <div class="ui blue button">
+                <i class="frown icon"></i>Don't like
+              </div>
+              <a class="ui basic blue left pointing label dislike-number">
+                0
+              </a>
+            </div>
+        </div>
       </div>
     </div>
-   
+
 
   </main>
   <script src="jquery-3.2.1.min.js"></script>
@@ -70,4 +90,5 @@
   <script src="chat.js"></script>
   <script src="save-image.js"></script>
 </body>
+
 </html>
