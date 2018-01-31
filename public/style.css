@@ -142,14 +142,15 @@ canvas {
   right: 0;
   height: 100vh;
   background: rgba(0, 0, 0, 0.8);
-  width: 80vw;
   padding: 20px;
-  left: 100vw;
+  width: 10vw;
+  left: 90vw;
   transition: left 0.5s;
 }
 
 .side-images.show {
   left: 20vw;
+  width: 80vw;
 }
 
 .side-images-content {
@@ -166,6 +167,14 @@ canvas {
 
 .save-image-template img {
   width: 100%;
+}
+
+.side-images .save-image-template .content {
+  display: none;
+}
+
+.side-images.show .save-image-template .content {
+  display: block;
 }
 
 .hidden {

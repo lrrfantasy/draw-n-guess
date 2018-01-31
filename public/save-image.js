@@ -77,11 +77,6 @@
       .modal('show');
   });
 
-  // $confirmSave.click(() => {
-  //   const imageUrl = canvas.toDataURL();
-  //   socket.emit('saveImage', imageUrl);
-  // });
-
   socket.on('like', image => {
     const $image = $(`#${image.id}`);
     setLikeAndDislike($image, image);
