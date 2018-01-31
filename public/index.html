@@ -63,18 +63,18 @@
         <img />
         <div class="content">
           <div class="ui labeled button like" tabindex="0">
-            <div class="ui red button">
+            <div class="ui red button color-item">
               <i class="heart icon"></i>Like
             </div>
-            <a class="ui basic red left pointing label like-number">
+            <a class="ui basic red left label like-number color-item">
               0
             </a>
           </div>
           <div class="ui labeled button dislike" tabindex="0">
-              <div class="ui blue button">
+              <div class="ui blue button color-item">
                 <i class="frown icon"></i>Don't like
               </div>
-              <a class="ui basic blue left pointing label dislike-number">
+              <a class="ui basic blue left label dislike-number color-item">
                 0
               </a>
             </div>
@@ -84,6 +84,10 @@
 
 
   </main>
+  <script> 
+    window.socket = io.connect();
+    window.username = '';
+  </script>
   <script src="jquery-3.2.1.min.js"></script>
   <script src="semantic.min.js"></script>
   <script src="client.js"></script>

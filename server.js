@@ -16,6 +16,8 @@ let images = [];
 let currentImageId = 0;
 
 io.on('connection', socket => {
+  let user;
+
   lineHistory.forEach(data => {
     socket.emit('drawLine', data);
   });
@@ -29,6 +31,8 @@ io.on('connection', socket => {
     io.emit('clear');
   });
   socket.on('login', name => {
+    user = name;
+
     io.emit('chat', 'Bot', `Welcome ${name} to join`);
   });
 
@@ -39,7 +43,7 @@ io.on('connection', socket => {
     ) {
       io.emit('drawImage', message);
     } else {
-      io.emit('chat', username, message);
+      io.emit('chat', user, message);
     }
   });
 
@@ -52,7 +56,9 @@ io.on('connection', socket => {
       id: `image_${currentImageId}`,
       url: imageUrl,
       like: 0,
+      likeUsers: [],
       dislike: 0,
+      dislikeUsers: [],
     };
 
     images.push(image);
@@ -66,7 +72,24 @@ io.on('connection', socket => {
     if (index >= 0) {
       const image = images[index];
 
-      image.like = image.like + 1;
+      const userIndex = image.likeUsers.indexOf(user);
+
+      if (userIndex < 0) {
+        image.likeUsers.push(user);
+        image.like = image.like + 1;
+
+        const userDislikeIndex = image.dislikeUsers.indexOf(user);
+        if (userDislikeIndex >= 0) {
+          image.dislikeUsers.splice(userDislikeIndex, 1);
+          image.dislike = image.dislike - 1;
+
+          io.emit('dislike', image);
+        }
+      } else {
+        image.likeUsers.splice(index, 1);
+        image.like = image.like - 1;
+      }
+
       io.emit('like', image);
     }
   });
@@ -76,7 +99,24 @@ io.on('connection', socket => {
     if (index >= 0) {
       const image = images[index];
 
-      image.dislike = image.dislike + 1;
+      const userIndex = image.dislikeUsers.indexOf(user);
+
+      if (userIndex < 0) {
+        image.dislikeUsers.push(user);
+        image.dislike = image.dislike + 1;
+
+        const userLikeIndex = image.likeUsers.indexOf(user);
+        if (userLikeIndex >= 0) {
+          image.likeUsers.splice(userLikeIndex, 1);
+          image.like = image.like - 1;
+
+          io.emit('like', image);
+        }
+      } else {
+        image.dislikeUsers.splice(userIndex, 1);
+        image.dislike = image.dislike - 1;
+      }
+
       io.emit('dislike', image);
     }
   });

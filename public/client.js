@@ -15,7 +15,6 @@
   const context = canvas.getContext('2d');
   const width = 1200 - 2;
   const height = 600 - 2;
-  const socket = io.connect();
 
   canvas.width = width;
   canvas.height = height;

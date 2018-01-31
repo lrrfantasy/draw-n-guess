@@ -1,6 +1,4 @@
 (function() {
-  const socket = io.connect();
-
   const canvas = document.getElementById('drawing');
 
   const $saveImageTemplate = $('.save-image-template');
@@ -11,6 +9,44 @@
   const $hideSide = $('.hide-side');
 
   const $save = $('#save');
+
+  const setLikeAndDislike = ($image, image) => {
+    $image.find('.like-number').text(image.like);
+    if (image.likeUsers.length > 0) {
+      $image
+        .find('.like-number')
+        .attr('data-tooltip', image.likeUsers.toString());
+    }
+    if (image.likeUsers.indexOf(username) >= 0) {
+      $image
+        .find('.like .color-item')
+        .removeClass('grey')
+        .addClass('red');
+    } else {
+      $image
+        .find('.like .color-item')
+        .removeClass('red')
+        .addClass('grey');
+    }
+
+    $image.find('.dislike-number').text(image.dislike);
+    if (image.dislikeUsers.length > 0) {
+      $image
+        .find('.dislike-number')
+        .attr('data-tooltip', image.dislikeUsers.toString());
+    }
+    if (image.dislikeUsers.indexOf(username) >= 0) {
+      $image
+        .find('.dislike .color-item')
+        .removeClass('grey')
+        .addClass('blue');
+    } else {
+      $image
+        .find('.dislike .color-item')
+        .removeClass('blue')
+        .addClass('grey');
+    }
+  };
 
   const addEvent = $image => {
     $image.find('.like').click(() => {
@@ -27,36 +63,21 @@
     socket.emit('saveImage', imageUrl);
   });
 
-  const likeImage = $image => {
-    const $likeNumberElement = $image.find('.like-number');
-    let likeNumber = parseInt($likeNumberElement.text());
-    likeNumber++;
-    $likeNumberElement.text(likeNumber);
-  };
-
-  const dislikeImage = $image => {
-    const $dislikeNumberElement = $image.find('.dislike-number');
-    let likeNumber = parseInt($dislikeNumberElement.text());
-    likeNumber++;
-    $dislikeNumberElement.text(likeNumber);
-  };
-
   socket.on('like', image => {
     const $image = $(`#${image.id}`);
-    likeImage($image);
+    setLikeAndDislike($image, image);
   });
 
   socket.on('dislike', image => {
     const $image = $(`#${image.id}`);
-    dislikeImage($image);
+    setLikeAndDislike($image, image);
   });
 
   socket.on('saveImage', image => {
     const $saveImage = $saveImageTemplate.clone();
     $saveImage.find('img').attr('src', image.url);
     $saveImage.attr('id', image.id);
-    $saveImage.find('.like-number').text(image.like);
-    $saveImage.find('.dislike-number').text(image.dislike);
+    setLikeAndDislike($saveImage, image);
     $sideImagesContent.append($saveImage);
     addEvent($saveImage);
   });
