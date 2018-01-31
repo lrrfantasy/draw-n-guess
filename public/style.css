@@ -169,6 +169,14 @@ canvas {
   width: 100%;
 }
 
+.side-images .save-image-template .thumbnail {
+  display: block;
+}
+
+.side-images.show .save-image-template .thumbnail {
+  display: none;
+}
+
 .side-images .save-image-template .content {
   display: none;
 }
