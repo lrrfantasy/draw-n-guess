@@ -9,6 +9,7 @@
   const $hideSide = $('.hide-side');
 
   const $save = $('#save');
+  const $confirmSave = $('.confirm-save');
 
   const setLikeAndDislike = ($image, image) => {
     $image.find('.like-number').text(image.like);
@@ -59,9 +60,21 @@
   };
 
   $save.click(() => {
-    const imageUrl = canvas.toDataURL();
-    socket.emit('saveImage', imageUrl);
+    $('.ui.modal.finish-drawing')
+      .modal({
+        closable: false,
+        onApprove: () => {
+          const imageUrl = canvas.toDataURL();
+          socket.emit('saveImage', imageUrl);
+        },
+      })
+      .modal('show');
   });
+
+  // $confirmSave.click(() => {
+  //   const imageUrl = canvas.toDataURL();
+  //   socket.emit('saveImage', imageUrl);
+  // });
 
   socket.on('like', image => {
     const $image = $(`#${image.id}`);
@@ -78,8 +91,10 @@
     $saveImage.find('img').attr('src', image.url);
     $saveImage.attr('id', image.id);
     setLikeAndDislike($saveImage, image);
-    $sideImagesContent.append($saveImage);
+    $sideImagesContent.prepend($saveImage);
     addEvent($saveImage);
+
+    socket.emit('clear');
   });
 
   $showSide.click(() => {

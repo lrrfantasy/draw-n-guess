@@ -23,7 +23,7 @@
         <span data-color="#6a4c9c"></span>
       </div>
       <div class="misc">
-        <a id="save">Save Image</a>
+        <a id="save">Finish drawing</a>
         <span class="clear" id="clear">Clear</span>
       </div>
     </div>
@@ -71,20 +71,30 @@
             </a>
           </div>
           <div class="ui labeled button dislike" tabindex="0">
-              <div class="ui blue button color-item">
-                <i class="frown icon"></i>Don't like
-              </div>
-              <a class="ui basic blue left label dislike-number color-item">
-                0
-              </a>
+            <div class="ui blue button color-item">
+              <i class="frown icon"></i>Don't like
             </div>
+            <a class="ui basic blue left label dislike-number color-item">
+              0
+            </a>
+          </div>
         </div>
       </div>
     </div>
 
+    <div class="ui modal finish-drawing">
+      <div class="header">Are you sure your drawing is finished?</div>
+      <div class="content">
+        <p>The drawing will be saved in the side bar. And the drawing in canvas will be <b>cleared</b>.</p>
+      </div>
+      <div class="actions">
+        <div class="ui confirm-save ok button secondary">My drawing is finished.</div>
+        <div class="ui cancel button">Not finished.</div>
+      </div>
+    </div>
 
   </main>
-  <script> 
+  <script>
     window.socket = io.connect();
     window.username = '';
   </script>
