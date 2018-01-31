@@ -11,6 +11,8 @@
   const $save = $('#save');
   const $confirmSave = $('.confirm-save');
 
+  const $download = $('.download');
+
   const setLikeAndDislike = ($image, image) => {
     $image.find('.like-number').text(image.like);
     if (image.likeUsers.length > 0) {
@@ -57,6 +59,10 @@
     $image.find('.dislike').click(() => {
       socket.emit('dislike', $image.attr('id'));
     });
+
+    const download = $image.find('.download')[0];
+    download.href = $image.find('img').attr('src');
+    download.download = 'image.png';
   };
 
   $save.click(() => {
