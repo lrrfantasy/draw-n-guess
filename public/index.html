@@ -23,8 +23,8 @@
         <span data-color="#6a4c9c"></span>
       </div>
       <div class="misc">
-        <a id="save">Finish drawing</a>
         <span class="clear" id="clear">Clear</span>
+        <a id="save">Finish drawing</a>
       </div>
     </div>
     <div class="chat">
@@ -63,12 +63,14 @@
         <img />
         <div class="thumbnail">
           <div class="ui small right floated">
-              <i class="heart icon red"></i><a class="like-number">1</a>
-             <i class="frown icon blue"></i><a class="dislike-number">2</a>
+            <i class="heart icon red"></i>
+            <a class="like-number">1</a>
+            <i class="frown icon blue"></i>
+            <span class="dislike-number">2</span>
           </div>
         </div>
         <div class="content">
-          
+
           <div class="ui labeled button like" tabindex="0">
             <div class="ui red button color-item">
               <i class="heart icon"></i>Like
@@ -87,10 +89,10 @@
           </div>
 
           <a class="ui labeled button right floated download" tabindex="0">
-              <div class="ui green button color-item">
-                <i class="download icon"></i>Download
-              </div>
-            </a>
+            <div class="ui green button color-item">
+              <i class="download icon"></i>Download
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -98,13 +100,22 @@
     <div class="ui modal finish-drawing">
       <div class="header">Are you sure your drawing is finished?</div>
       <div class="content">
-        <p>The drawing will be saved in the side bar. And the drawing in canvas will be <b>cleared</b>.</p>
+        <p>The drawing will be saved in the side bar. And the drawing in canvas will be
+          <b>cleared</b>.</p>
       </div>
       <div class="actions">
-        <div class="ui confirm-save ok button secondary">My drawing is finished.</div>
+        <div class="ui ok button secondary">My drawing is finished.</div>
         <div class="ui cancel button">Not finished.</div>
       </div>
     </div>
+
+    <div class="ui modal clear">
+        <div class="header">Are you sure you want to clear your drawing?</div>
+        <div class="actions">
+          <div class="ui ok button secondary">Clear my drawing.</div>
+          <div class="ui cancel button">Not clear.</div>
+        </div>
+      </div>
 
   </main>
   <script>

@@ -50,7 +50,13 @@
   });
 
   clear.onclick = () => {
-    socket.emit('clear');
+    $('.ui.modal.clear')
+      .modal({
+        onApprove: () => {
+          socket.emit('clear');
+        },
+      })
+      .modal('show');
   };
 
   socket.on('clear', () => {

@@ -3,7 +3,7 @@
 }
 
 main {
-  margin: 20px auto;
+  margin: 20px;
   width: 100%;
   max-width: 1200px;
 }
@@ -143,8 +143,8 @@ canvas {
   height: 100vh;
   background: rgba(0, 0, 0, 0.8);
   padding: 20px;
-  width: 10vw;
-  left: 90vw;
+  width: 120px;
+  left: calc(100vw - 120px);
   transition: left 0.5s;
 }
 

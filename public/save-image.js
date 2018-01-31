@@ -68,7 +68,6 @@
   $save.click(() => {
     $('.ui.modal.finish-drawing')
       .modal({
-        closable: false,
         onApprove: () => {
           const imageUrl = canvas.toDataURL();
           socket.emit('saveImage', imageUrl);
