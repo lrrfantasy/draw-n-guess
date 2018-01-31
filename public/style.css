@@ -147,7 +147,7 @@ canvas {
   padding: 20px;
   width: 120px;
   left: calc(100vw - 120px);
-  transition: left 0.5s;
+  transition: all 0.5s;
 }
 
 .side-images.show {
