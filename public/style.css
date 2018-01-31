@@ -120,6 +120,8 @@ canvas {
   animation-name: fly-to-left;
   animation-duration: 25s;
   animation-timing-function: linear;
+  text-shadow: 1px 1px 1px #ffffff, -1px -1px 1px #ffffff, 1px -1px 1px #ffffff,
+    -1px 1px 0px #ffffff;
 }
 
 .message .nyan {
