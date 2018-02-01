@@ -31,7 +31,7 @@
     mouse.pos.y = offsetY / height;
   };
 
-  socket.on('drawLine', data => {
+  const drawLine = data => {
     const { line, color } = data;
     context.beginPath();
     context.lineWidth = 2;
@@ -39,6 +39,16 @@
     context.lineTo(line[1].x * width, line[1].y * height);
     context.strokeStyle = color;
     context.stroke();
+  };
+
+  socket.on('drawLines', datas => {
+    datas.forEach(data => {
+      drawLine(data);
+    });
+  });
+
+  socket.on('drawLine', data => {
+    drawLine(data);
   });
 
   palettes.forEach(palette => {

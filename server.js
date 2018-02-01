@@ -15,17 +15,36 @@ let lineHistory = [];
 let images = [];
 let currentImageId = 0;
 
+let tempHistory = [];
+const emitDrawLineDelay = 100;
+let emitDrawLineTimeout = 0;
+
 io.on('connection', socket => {
   let user;
 
-  lineHistory.forEach(data => {
-    socket.emit('drawLine', data);
-  });
+  socket.emit('drawLines', lineHistory);
 
   socket.on('drawLine', data => {
-    lineHistory.push(data);
-    io.emit('drawLine', data);
+    // lineHistory.push(data);
+    // io.emit('drawLine', data);
+
+    tempHistory.push(data);
+
+    if (emitDrawLineTimeout) {
+      clearTimeout(emitDrawLineTimeout);
+    }
+
+    socket.emit('drawLine', data);
+
+    emitDrawLineTimeout = setTimeout(() => {
+      io.emit('drawLines', tempHistory);
+
+      lineHistory = [...lineHistory, ...tempHistory];
+      tempHistory = [];
+      emitDrawLineTimeout = 0;
+    }, emitDrawLineDelay);
   });
+
   socket.on('clear', () => {
     lineHistory = [];
     io.emit('clear');
@@ -86,7 +105,7 @@ io.on('connection', socket => {
           io.emit('dislike', image);
         }
       } else {
-        image.likeUsers.splice(index, 1);
+        image.likeUsers.splice(userIndex, 1);
         image.like = image.like - 1;
       }
 
