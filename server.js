@@ -16,7 +16,7 @@ let images = [];
 let currentImageId = 0;
 
 let tempHistory = [];
-const emitDrawLineDelay = 100;
+const emitDrawLineDelay = 500;
 let emitDrawLineTimeout = 0;
 
 io.on('connection', socket => {
@@ -29,16 +29,16 @@ io.on('connection', socket => {
     // io.emit('drawLine', data);
 
     tempHistory.push(data);
+    socket.emit('drawLine', data);
 
     if (emitDrawLineTimeout) {
-      clearTimeout(emitDrawLineTimeout);
+      return;
     }
-
-    socket.emit('drawLine', data);
 
     emitDrawLineTimeout = setTimeout(() => {
       io.emit('drawLines', tempHistory);
 
+      console.log(tempHistory.length);
       lineHistory = [...lineHistory, ...tempHistory];
       tempHistory = [];
       emitDrawLineTimeout = 0;
