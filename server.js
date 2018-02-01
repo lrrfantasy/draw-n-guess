@@ -37,8 +37,6 @@ io.on('connection', socket => {
 
     emitDrawLineTimeout = setTimeout(() => {
       io.emit('drawLines', tempHistory);
-
-      console.log(tempHistory.length);
       lineHistory = [...lineHistory, ...tempHistory];
       tempHistory = [];
       emitDrawLineTimeout = 0;
@@ -74,9 +72,7 @@ io.on('connection', socket => {
     const image = {
       id: `image_${currentImageId}`,
       url: imageUrl,
-      like: 0,
       likeUsers: [],
-      dislike: 0,
       dislikeUsers: [],
     };
 
@@ -95,18 +91,13 @@ io.on('connection', socket => {
 
       if (userIndex < 0) {
         image.likeUsers.push(user);
-        image.like = image.like + 1;
 
         const userDislikeIndex = image.dislikeUsers.indexOf(user);
         if (userDislikeIndex >= 0) {
           image.dislikeUsers.splice(userDislikeIndex, 1);
-          image.dislike = image.dislike - 1;
-
-          io.emit('dislike', image);
         }
       } else {
         image.likeUsers.splice(userIndex, 1);
-        image.like = image.like - 1;
       }
 
       io.emit('like', image);
@@ -122,21 +113,16 @@ io.on('connection', socket => {
 
       if (userIndex < 0) {
         image.dislikeUsers.push(user);
-        image.dislike = image.dislike + 1;
 
         const userLikeIndex = image.likeUsers.indexOf(user);
         if (userLikeIndex >= 0) {
           image.likeUsers.splice(userLikeIndex, 1);
-          image.like = image.like - 1;
-
-          io.emit('like', image);
         }
       } else {
         image.dislikeUsers.splice(userIndex, 1);
-        image.dislike = image.dislike - 1;
       }
 
-      io.emit('dislike', image);
+      io.emit('like', image);
     }
   });
 });

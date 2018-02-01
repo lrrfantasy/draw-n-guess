@@ -14,11 +14,13 @@
   const $download = $('.download');
 
   const setLikeAndDislike = ($image, image) => {
-    $image.find('.like-number').text(image.like);
+    $image.find('.like-number').text(image.likeUsers.length);
     if (image.likeUsers.length > 0) {
       $image
         .find('.like-number')
         .attr('data-tooltip', image.likeUsers.toString());
+    } else {
+      $image.find('.like-number').removeAttr('data-tooltip');
     }
     if (image.likeUsers.indexOf(username) >= 0) {
       $image
@@ -32,11 +34,13 @@
         .addClass('grey');
     }
 
-    $image.find('.dislike-number').text(image.dislike);
+    $image.find('.dislike-number').text(image.dislikeUsers.length);
     if (image.dislikeUsers.length > 0) {
       $image
         .find('.dislike-number')
         .attr('data-tooltip', image.dislikeUsers.toString());
+    } else {
+      $image.find('.dislike-number').removeAttr('data-tooltip');
     }
     if (image.dislikeUsers.indexOf(username) >= 0) {
       $image
@@ -77,11 +81,6 @@
   });
 
   socket.on('like', image => {
-    const $image = $(`#${image.id}`);
-    setLikeAndDislike($image, image);
-  });
-
-  socket.on('dislike', image => {
     const $image = $(`#${image.id}`);
     setLikeAndDislike($image, image);
   });
