@@ -19,7 +19,11 @@
   canvas.width = width;
   canvas.height = height;
 
-  const factor = canvas.getBoundingClientRect().width / width;
+  let factor = canvas.getBoundingClientRect().width / width;
+
+  $(window).resize(() => {
+    factor = canvas.getBoundingClientRect().width / width;
+  });
 
   canvas.onmousedown = e => {
     mouse.click = true;
