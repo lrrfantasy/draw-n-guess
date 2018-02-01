@@ -14,10 +14,12 @@
   const canvas = document.getElementById('drawing');
   const context = canvas.getContext('2d');
   const width = 1200 - 2;
-  const height = 600 - 2;
+  const height = 500 - 2;
 
   canvas.width = width;
   canvas.height = height;
+
+  const factor = canvas.getBoundingClientRect().width / width;
 
   canvas.onmousedown = e => {
     mouse.click = true;
@@ -27,8 +29,8 @@
   };
   canvas.onmousemove = ({ offsetX, offsetY }) => {
     mouse.move = true;
-    mouse.pos.x = offsetX / width;
-    mouse.pos.y = offsetY / height;
+    mouse.pos.x = offsetX / width / factor;
+    mouse.pos.y = offsetY / height / factor;
   };
 
   const drawLine = data => {
