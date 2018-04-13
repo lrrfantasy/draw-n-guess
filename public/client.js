@@ -1,8 +1,11 @@
-(function() {
+(function () {
   const mouse = {
     click: false,
     move: false,
-    pos: { x: 0, y: 0 },
+    pos: {
+      x: 0,
+      y: 0
+    },
     prevPos: false,
     color: '#000',
   };
@@ -20,9 +23,11 @@
   canvas.height = height;
 
   let factor = canvas.getBoundingClientRect().width / width;
+  let canvasOffset = canvas.getBoundingClientRect();
 
   $(window).resize(() => {
     factor = canvas.getBoundingClientRect().width / width;
+    canvasOffset = canvas.getBoundingClientRect();
   });
 
   canvas.onmousedown = e => {
@@ -31,14 +36,58 @@
   canvas.onmouseup = e => {
     mouse.click = false;
   };
-  canvas.onmousemove = ({ offsetX, offsetY }) => {
+  canvas.onmousemove = ({
+    offsetX,
+    offsetY
+  }) => {
     mouse.move = true;
     mouse.pos.x = offsetX / width / factor;
     mouse.pos.y = offsetY / height / factor;
   };
 
+  canvas.addEventListener('touchstart', (event) => {
+    mouse.click = true;
+    const touches = event.touches;
+
+    if (touches && touches.length) {
+      const {
+        pageX,
+        pageY
+      } = touches[0];
+
+      mouse.pos.x = (pageX - canvasOffset.x) / width / factor;
+      mouse.pos.y = (pageY - canvasOffset.y) / height / factor;
+      mouse.prevPos = {
+        x: mouse.pos.x,
+        y: mouse.pos.y
+      };
+    }
+  })
+
+  canvas.addEventListener('touchend', () => {
+    mouse.click = false;
+  })
+
+  canvas.addEventListener('touchmove', (event) => {
+    const touches = event.touches;
+
+    if (touches && touches.length) {
+      const {
+        pageX,
+        pageY
+      } = touches[0];
+
+      mouse.move = true;
+      mouse.pos.x = (pageX - canvasOffset.x) / width / factor;
+      mouse.pos.y = (pageY - canvasOffset.y) / height / factor;
+    }
+  })
+
   const drawLine = data => {
-    const { line, color } = data;
+    const {
+      line,
+      color
+    } = data;
     context.beginPath();
     context.lineWidth = 2;
     context.moveTo(line[0].x * width, line[0].y * height);
@@ -95,10 +144,15 @@
       });
       mouse.move = false;
     }
-    mouse.prevPos = { x: mouse.pos.x, y: mouse.pos.y };
+
+    mouse.prevPos = {
+      x: mouse.pos.x,
+      y: mouse.pos.y
+    };
   }
 
   setInterval(mainLoop, 25);
+
   function makeCursor(color) {
     var cursor = document.createElement('canvas'),
       ctx = cursor.getContext('2d');
